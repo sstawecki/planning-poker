@@ -1,13 +1,13 @@
 var WebSocketServer = require('websocket').server,
     express = require('./express.js');
-    
+
 BootstrapServer = function() {};
 
 BootstrapServer.getInstance = function() {
     if (BootstrapServer.__instance == null) {
         BootstrapServer.__instance = new BootstrapServer();
     }
-    
+
     return BootstrapServer.__instance;
 };
 
@@ -20,11 +20,11 @@ BootstrapServer.prototype.config = {};
 
 BootstrapServer.prototype.bootstrap = function(http, config) {
     this.config = config;
-    
+
     this.createExpressApp();
     this.createHttpServer();
     this.createWebsocketServer();
-    
+
     return this.websocketServer;
 };
 
@@ -45,7 +45,7 @@ BootstrapServer.prototype.createWebsocketServer = function() {
 
 BootstrapServer.prototype.run = function() {
     var server = this;
-    this.httpServer.listen(this.config.http.port, function() {
+    this.httpServer.listen(process.env.PORT || this.config.http.port, function() {
         console.log('HTTP Server running with config:');
         console.log(server.config.http);
     });
