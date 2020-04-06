@@ -7,7 +7,7 @@
 
 			postUserStoryButton = $(options.postUserStoryButton);
 
-			if ($(event.target).val().length > 9) {
+			if ($(event.target).val().length > 0) {
 				postUserStoryButton.removeAttr('disabled');
 			} else {
 				postUserStoryButton.attr('disabled', 'disabled')
@@ -27,6 +27,8 @@
 
 			window.managedSocket.send(JSON.stringify(postUserstoryData));
 			postUserStoryTextarea.val("");
+			postUserStoryButton = $(options.postUserStoryButton);
+			postUserStoryButton.attr('disabled', 'disabled');
 			$(options.editUserStoryButton).removeAttr('disabled');
 		});
 

@@ -10,6 +10,8 @@ var config = require('iniparser').parseSync('./config.ini'),
     http = require(config.http.protocol),
     server = require('./bootstrap/server.js');
 
+// TODO: replace config.ini by dotenv
+config.http.address = process.env.HOST;
 // This path cannot be completely set in the config
 // Also see https://github.com/mashpie/i18n-node/issues/61
 config.filesystem.i18n = __dirname + config.filesystem.i18n;
